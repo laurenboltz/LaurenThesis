@@ -27,6 +27,8 @@ view: ten_year_community_crime_rank {
             )) as thetable
       WHERE rank <= 5
        ;;
+
+    datagroup_trigger:  lauren_thesis_default_datagroup
   }
 
   measure: count {

@@ -26,6 +26,8 @@ view: neighborhood_crime_ranks {
             )) as thetable
       WHERE rank <= 5
        ;;
+
+      datagroup_trigger:  lauren_thesis_default_datagroup
   }
 
   measure: count {

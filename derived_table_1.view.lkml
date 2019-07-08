@@ -8,7 +8,11 @@ WHERE
 AND community_area IS NOT NULL AND community_area > 0 GROUP BY community_area) as table_the group by community_area, number_of_crimes
 
       ;;
+
+
+ datagroup_trigger: lauren_thesis_default_datagroup
   }
+
 
   measure: count {
     type: count

@@ -6,7 +6,7 @@ include: "//lauren_thesis_weatherblock/*.view.lkml"
 
 
 datagroup: lauren_thesis_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 

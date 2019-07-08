@@ -24,14 +24,14 @@ view: crime_copy {
 
   dimension: community_area {
     type: number
-    html: <a href="https://productday.dev.looker.com/dashboards/215?Community%20Area={{ _field._name | url_encode }}">{{ value }}</a>;;
+    html: <a href="https://productday.dev.looker.com/dashboards/215?Community%20Area={{ value }}">{{ value }}</a>;;
     link: {
       label: "Google Search this Neighborhood!"
       url: "https://www.google.com/search?q=chicago+community+area+{{ value }}"
       icon_url: "http://google.com/favicon.ico"
     }
     sql: ${TABLE}.community_area;;
-    drill_fields: [community_area]
+
   }
 
 
