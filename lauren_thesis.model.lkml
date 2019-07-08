@@ -1,8 +1,9 @@
-connection: "lookerdata_publicdata"
+connection: "lookerdata_publicdata_standard_sql"
 
 # include all the views
 include: "*.view"
-include: "/lauren_thesis_weatherblock/*.view.lkml"
+include: "//lauren_thesis_weatherblock/*.view.lkml"
+
 
 datagroup: lauren_thesis_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;

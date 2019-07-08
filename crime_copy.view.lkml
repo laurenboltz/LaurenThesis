@@ -24,7 +24,7 @@ view: crime_copy {
 
   dimension: community_area {
     type: number
-    html: <a href="https://productday.dev.looker.com/dashboards/215?Community%20Area={{ value }}">{{ value }}</a>;;
+    html: <a href="https://productday.dev.looker.com/dashboards/215?Community%20Area={{ _field._name | url_encode }}">{{ value }}</a>;;
     link: {
       label: "Google Search this Neighborhood!"
       url: "https://www.google.com/search?q=chicago+community+area+{{ value }}"
@@ -362,8 +362,16 @@ view: crime_copy {
       year,
       day_of_week,
       time_of_day,
-      month_name
+      month_name,
+     day_of_week_index
     ]
+    html:
+    {% if value == 'Saturday' or value == 'Sunday' %}
+    <p style="color: black; background-color: lightblue; font-size:100%; text-align:center">{{ rendered_value }}</p>
+    {% else %}
+    <p style="color: black; background-color: white; font-size:100%; text-align:center">{{ rendered_value }}</p>
+    {% endif %}
+    ;;
     sql: ${TABLE}.date ;;
   }
 
@@ -403,6 +411,13 @@ view: crime_copy {
       sql_latitude: ${latitude} ;;
       sql_longitude: ${longitude} ;;
     }
+
+  dimension: distance { #testing for chat
+    type: distance
+    start_location_field: crime_copy.location
+    end_location_field: crime_copy.location
+    units: miles
+  }
 
   dimension: location_description {
     type: string
@@ -469,4 +484,33 @@ view: crime_copy {
     drill_fields:  [date_date, primary_type, location_description]
   }
 
+  dimension: Test_test {
+    type: yesno
+    sql: ${date_date} = date_add(cast({%date_end date_date%} as DATE), INTERVAL -1 day) ;;
+    hidden: no
+  }
+
+
+  measure: sum_test {
+    type: sum
+    filters: {
+      field: Test_test
+    }
+  }
+
+  measure: two_dimension_count_TEST {
+    type: count_distinct
+    sql: CONCAT(${description},${primary_type}) ;;
+
+  }
+
+#   measure: count_ward_test {
+#     type: number
+#     sql: count(${ward}) ;;
+#   }
+#
+#   measure: count_district_test {
+#     type: number
+#     sql: count(${district}) ;;
+#   }
 }
