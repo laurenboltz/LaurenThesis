@@ -31,6 +31,7 @@ view: crime_copy {
       icon_url: "http://google.com/favicon.ico"
     }
     sql: ${TABLE}.community_area;;
+    drill_fields: [community_area]
 
   }
 
